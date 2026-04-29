@@ -1,0 +1,292 @@
+mqtt:
+  sensor:
+    - name: "Davis Vantage Vue Last Update"
+      unique_id: davis_weatherlinkip_station_updated_at
+      device: &davis_weatherlinkip_device
+        identifiers:
+          - "davis_weatherlinkip_station"
+        name: "Davis Vantage Vue"
+        manufacturer: "Davis Instruments"
+        model: "Vantage Vue with WeatherLinkIP"
+        configuration_url: "http://192.168.1.17/"
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.updated_at is not none %}{{ value_json.updated_at }}{% endif %}
+      json_attributes_topic: "home/weather/davis_vantage_vue/state"
+      device_class: timestamp
+
+    - name: "Davis Vantage Vue Outdoor Temperature"
+      unique_id: davis_weatherlinkip_station_outdoor_temperature_f
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.outdoor_temperature_f is not none %}{{ value_json.outdoor_temperature_f }}{% endif %}
+      unit_of_measurement: "\u00b0F"
+      device_class: temperature
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Outdoor Humidity"
+      unique_id: davis_weatherlinkip_station_outdoor_humidity_pct
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.outdoor_humidity_pct is not none %}{{ value_json.outdoor_humidity_pct }}{% endif %}
+      unit_of_measurement: "%"
+      device_class: humidity
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Dew Point"
+      unique_id: davis_weatherlinkip_station_dew_point_f
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.dew_point_f is not none %}{{ value_json.dew_point_f }}{% endif %}
+      unit_of_measurement: "\u00b0F"
+      device_class: temperature
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Wind Chill"
+      unique_id: davis_weatherlinkip_station_wind_chill_f
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.wind_chill_f is not none %}{{ value_json.wind_chill_f }}{% endif %}
+      unit_of_measurement: "\u00b0F"
+      device_class: temperature
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Heat Index"
+      unique_id: davis_weatherlinkip_station_heat_index_f
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.heat_index_f is not none %}{{ value_json.heat_index_f }}{% endif %}
+      unit_of_measurement: "\u00b0F"
+      device_class: temperature
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Barometer"
+      unique_id: davis_weatherlinkip_station_barometer_inhg
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.barometer_inhg is not none %}{{ value_json.barometer_inhg }}{% endif %}
+      unit_of_measurement: "inHg"
+      device_class: pressure
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Bar Trend"
+      unique_id: davis_weatherlinkip_station_bar_trend
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.bar_trend is not none %}{{ value_json.bar_trend }}{% endif %}
+      icon: mdi:gauge
+      entity_category: diagnostic
+
+    - name: "Davis Vantage Vue Wind Speed"
+      unique_id: davis_weatherlinkip_station_wind_speed_mph
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.wind_speed_mph is not none %}{{ value_json.wind_speed_mph }}{% endif %}
+      unit_of_measurement: "mph"
+      device_class: wind_speed
+      state_class: measurement
+
+    - name: "Davis Vantage Vue 10 Minute Wind Speed"
+      unique_id: davis_weatherlinkip_station_wind_speed_10_min_mph
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.wind_speed_10_min_mph is not none %}{{ value_json.wind_speed_10_min_mph }}{% endif %}
+      unit_of_measurement: "mph"
+      device_class: wind_speed
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Wind Direction"
+      unique_id: davis_weatherlinkip_station_wind_direction_deg
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.wind_direction_deg is not none %}{{ value_json.wind_direction_deg }}{% endif %}
+      unit_of_measurement: "\u00b0"
+      device_class: wind_direction
+      state_class: measurement_angle
+
+    - name: "Davis Vantage Vue Rain Rate"
+      unique_id: davis_weatherlinkip_station_rain_rate_in_per_hr
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.rain_rate_in_per_hr is not none %}{{ value_json.rain_rate_in_per_hr }}{% endif %}
+      unit_of_measurement: "in/h"
+      device_class: precipitation_intensity
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Rain Today"
+      unique_id: davis_weatherlinkip_station_rain_day_in
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.rain_day_in is not none %}{{ value_json.rain_day_in }}{% endif %}
+      unit_of_measurement: "in"
+      device_class: precipitation
+      state_class: total_increasing
+
+    - name: "Davis Vantage Vue Rain This Month"
+      unique_id: davis_weatherlinkip_station_rain_month_in
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.rain_month_in is not none %}{{ value_json.rain_month_in }}{% endif %}
+      unit_of_measurement: "in"
+      device_class: precipitation
+      state_class: total_increasing
+
+    - name: "Davis Vantage Vue Rain This Year"
+      unique_id: davis_weatherlinkip_station_rain_year_in
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.rain_year_in is not none %}{{ value_json.rain_year_in }}{% endif %}
+      unit_of_measurement: "in"
+      device_class: precipitation
+      state_class: total_increasing
+
+    - name: "Davis Vantage Vue Storm Rain"
+      unique_id: davis_weatherlinkip_station_rain_storm_in
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.rain_storm_in is not none %}{{ value_json.rain_storm_in }}{% endif %}
+      unit_of_measurement: "in"
+      device_class: precipitation
+      state_class: total_increasing
+
+    - name: "Davis Vantage Vue Indoor Temperature"
+      unique_id: davis_weatherlinkip_station_indoor_temperature_f
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.indoor_temperature_f is not none %}{{ value_json.indoor_temperature_f }}{% endif %}
+      unit_of_measurement: "\u00b0F"
+      device_class: temperature
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Indoor Humidity"
+      unique_id: davis_weatherlinkip_station_indoor_humidity_pct
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.indoor_humidity_pct is not none %}{{ value_json.indoor_humidity_pct }}{% endif %}
+      unit_of_measurement: "%"
+      device_class: humidity
+      state_class: measurement
+
+    - name: "Davis Vantage Vue Console Battery Voltage"
+      unique_id: davis_weatherlinkip_station_battery_voltage_v
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.battery_voltage_v is not none %}{{ value_json.battery_voltage_v }}{% endif %}
+      unit_of_measurement: "V"
+      device_class: voltage
+      state_class: measurement
+      entity_category: diagnostic
+
+    - name: "Davis Vantage Vue Battery Status"
+      unique_id: davis_weatherlinkip_station_battery_status
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.battery_status is not none %}{{ value_json.battery_status }}{% endif %}
+      icon: mdi:battery
+      entity_category: diagnostic
+
+    - name: "Davis Vantage Vue Solar Radiation"
+      unique_id: davis_weatherlinkip_station_solar_radiation_w_m2
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.solar_radiation_w_m2 is not none %}{{ value_json.solar_radiation_w_m2 }}{% endif %}
+      unit_of_measurement: "W/m\u00b2"
+      device_class: irradiance
+      state_class: measurement
+      enabled_by_default: false
+
+    - name: "Davis Vantage Vue UV Index"
+      unique_id: davis_weatherlinkip_station_uv_index
+      device: *davis_weatherlinkip_device
+      state_topic: "home/weather/davis_vantage_vue/state"
+      availability_topic: "home/weather/davis_vantage_vue/availability"
+      payload_available: "online"
+      payload_not_available: "offline"
+      value_template: >-
+        {% if value_json.uv_index is not none %}{{ value_json.uv_index }}{% endif %}
+      icon: mdi:weather-sunny
+      state_class: measurement
+      enabled_by_default: false

@@ -1,0 +1,34 @@
+name: Davis WeatherLinkIP MQTT
+version: "0.1.2"
+slug: davis_weatherlink_mqtt
+description: Publishes Davis WeatherLinkIP LOOP data to Home Assistant via MQTT discovery.
+url: https://github.com/John-Vance/davis-weatherlinkip-mqtt
+arch:
+  - amd64
+startup: services
+boot: auto
+init: false
+services:
+  - mqtt:need
+options:
+  station_host: 192.168.1.17
+  station_port: 22222
+  station_timeout_seconds: 10
+  interval_seconds: 30
+  retry_seconds: 15
+  discovery_prefix: homeassistant
+  base_topic: home/weather/davis_vantage_vue
+  device_name: Davis Vantage Vue
+  device_id: davis_weatherlinkip
+  publish_raw_fields: true
+schema:
+  station_host: str
+  station_port: int(1,65535)
+  station_timeout_seconds: int(3,60)
+  interval_seconds: int(5,3600)
+  retry_seconds: int(5,300)
+  discovery_prefix: str
+  base_topic: str
+  device_name: str
+  device_id: str
+  publish_raw_fields: bool
